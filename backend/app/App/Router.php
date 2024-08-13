@@ -2,32 +2,55 @@
 
 namespace SyafiqParadisam\Belajar\PHP\MVC\App;
 
-class Router {
-    private static array $routes = [];
+use SyafiqParadisam\Belajar\PHP\MVC\Controller\Controller;
 
-    public static function add(string $method, string $path, string $controller, string $function): void {
-        self::$routes[] = [
+class Router extends Controller
+{
+    public array $routes = [];
+    public function __construct() {
+        $this->connect();
+    }
+    public function add(string $method, string $path, string $controller, string $function): void
+    {
+       $this->routes[] = [
             'method' => $method,
             'path' => $path,
-            'controller' => $controller, 
+            'controller' => $controller,
             'function' => $function
         ];
     }
-
-    public static function run() {
+    public function run()
+    {
         $path = '/';
-        if (isset($_SERVER['PATH_INFO'])) $path = $_SERVER['PATH_INFO'];
+        if (isset($_SERVER['PATH_INFO']))
+            $path = $_SERVER['PATH_INFO'];
         $method = $_SERVER['REQUEST_METHOD'];
 
-    foreach(self::$routes as $route) {
-        if ($path == $route['path'] && $method == $route['method']) {
-            echo "CONTROLLER : " . $route['controller'] . ", FUNCTION : " . $route['function'];
-            return;
-        }
-    }
+        foreach ($this->routes as $route) {
+            if ($path == $route['path'] && $method == $route['method']) {
+                $controllerName = $route['controller'];
+                if (class_exists($controllerName)) {
+                    $controller = new $controllerName();
+                } else {
+                    http_response_code(500);
+                    echo "Controller class not found";
+                    return;
+                }
 
-    http_response_code(404);
-    echo "CONTROLLER NOT FOUND";
+                 // Memanggil fungsi pada controller
+                 $functionName = $route['function'];
+                 if (method_exists($controller, $functionName)) {
+                     $controller->$functionName();
+                 } else {
+                     http_response_code(500);
+                     echo "Method not found in controller";
+                 }
+                 return;
+            }
+        }
+
+        http_response_code(404);
+        echo "CONTROLLER NOT FOUND";
     }
 
 }

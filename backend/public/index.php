@@ -3,10 +3,10 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use SyafiqParadisam\Belajar\PHP\MVC\App\Router;
-use SyafiqParadisam\Belajar\PHP\MVC\Controller;
+use SyafiqParadisam\Belajar\PHP\MVC\Controller\Controller;
 
-Router::add('GET', '/', HomeController::class, 'index');
-Router::add('GET', '/login',HomeController::class, 'login');
-Router::add('GET', '/register', HomeController::class, 'register');
+$router = new Router();
+$router->add('GET', '/', Controller::class, 'getImages');
+$router->add('POST', '/insert',Controller::class, 'insertImages');
 
-Router::run();
+$router->run();
