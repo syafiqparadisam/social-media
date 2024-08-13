@@ -17,8 +17,15 @@ class Image extends ConnectDB
             die("Find Query error" . pg_last_error($this->connect()));
         }
 
+        $resultArray = [];
 
-        return $result;
+        // Loop through each row in the result set
+        while ($row = pg_fetch_assoc($result)) {
+            $resultArray[] = $row; // Add each row to the result array
+        }
+        
+        
+        return $resultArray;
     }
 
     public function insert(string $image)

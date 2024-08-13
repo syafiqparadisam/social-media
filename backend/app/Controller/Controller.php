@@ -9,10 +9,9 @@ class Controller extends Image
     {
         header('Content-Type: application/json');
         header("HTTP/1.1 200 OK");
-        $images = $this->find();
-        $row = pg_fetch_assoc($images);
-        $result = json_encode($row);
-        echo $result;
+       $result = $this->find();
+       $encoding = json_encode($result);
+       echo $encoding;
     }
 
     public function insertImages()
