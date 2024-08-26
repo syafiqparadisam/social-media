@@ -1,50 +1,17 @@
 <?php
 
-namespace SyafiqParadisam\Belajar\PHP\MVC\Models;
+namespace WebWaifu\Models;
 
-use SyafiqParadisam\Belajar\PHP\MVC\Config\ConnectDB;
+use WebWaifu\Core\DB;
 
-class Image extends ConnectDB
+class Image extends DB
 {
     public function find()
     {
-        $result = pg_prepare($this->connect(), "findquery", "SELECT * FROM image");
-
-        // Execute the statement
-        $result = pg_execute($this->connect(), "findquery", array());
-
-        if (!$result) {
-            die("Find Query error" . pg_last_error($this->connect()));
-        }
-
-        $resultArray = [];
-
-        // Loop through each row in the result set
-        while ($row = pg_fetch_assoc($result)) {
-            $resultArray[] = $row; // Add each row to the result array
-        }
-        
-        
-        return $resultArray;
+      
     }
 
     public function insert(string $image)
-    {
-
-        $result = pg_prepare($this->connect(), "insertQuery", "INSERT INTO image (image) VALUES ($image)");
-        $result = pg_execute($this->connect(), "insertQuery");
-
-        if (!$result) {
-            die("Insert Query error" . pg_last_error($this->connect()));
-        }
-    }
-
-    public function findImageId()
-    {
-
-    }
-
-    public function findWithLimit()
     {
 
     }
