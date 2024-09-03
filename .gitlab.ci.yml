@@ -1,0 +1,10 @@
+stages:
+  - install
+  - lint
+  - test
+  - build
+  - deploy
+
+# install_dependencies:
+#   stage: install
+#   image:

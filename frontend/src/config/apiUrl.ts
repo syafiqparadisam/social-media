@@ -1,1 +1,0 @@
-export default ["angry","bite","blush","bonk","bored","bully","bye","chase","cheer","cringe","cuddle","baka", "die", "disgust", "hi", "disgust", "highfive", "hold", "hug", "kick", "kill","dance", "dab", "kiss", "laugh", "midfing", "panic", "pat", "nope", "nervous", "nuzzle", "nom"]

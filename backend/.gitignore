@@ -1,9 +1,0 @@
-*.env
-vendor
-*.env
-cache/
-logs/
-uploads/
-.idea/
-*.vscode/
-composer.phar

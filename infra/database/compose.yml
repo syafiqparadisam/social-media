@@ -1,0 +1,41 @@
+version: "5"
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgresdb
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: admin1234
+      POSTGRES_DATABASE: animewaifu
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5432"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    volumes:
+      - "./db:/var/lib/postgresql/data"
+      - "./migrate.sql:/docker-entrypoint-initdb.d/migrate.sql"
+    ports:
+      - 5432:5432
+
+  redis:
+    image: redis:latest
+    container_name: redisdb
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6379"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    volumes:
+      - ./redis-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+
+
+volumes:
+  db:
+  redisdata:
