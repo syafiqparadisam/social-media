@@ -9,13 +9,11 @@ export default {
 }
 </script>
 
-
-
 <template>
   <nav>
     <div class="w-full bg-blue-700 flex justify-around p-4 items-center">
       <div class="w-1/5 flex justify-center  text-white">
-        <RouterLink class="font-bold text-3xl">Nimepix</RouterLink>
+        <RouterLink class="font-bold text-3xl">Social Media</RouterLink>
       </div>
       <div class="w-3/5 flex justify-center rounded-md bg-white items-center">
         <i class="pi ml-2 pi-search"></i>

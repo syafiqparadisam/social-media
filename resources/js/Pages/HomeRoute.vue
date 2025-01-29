@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>HOME</h1>
-        <router-link to="/test"> Take me to Test page </router-link>
+        <h1></h1>
+        <router-link to="/test">Sebentar</router-link>
     </div>
 </template>
